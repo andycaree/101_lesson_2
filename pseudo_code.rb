@@ -9,9 +9,7 @@
 
 # write a method that contains two parameters
 # the two parameters represent the two integers that will be added together
-# within the method the addition operation of the two integers takes place
-# this operation is preceded by the puts method
-# the method is ended
+# add the integers together in the method
 # the method is then called and given two integers as arguments
 
 # FORMAL
@@ -95,14 +93,21 @@ SET new_array = []
 DEF every_other(array)
   SET var = array
 
+=end
 
 
 
+array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+new_array = []
 
+array.each_with_index do |v, i|
+  if i % 2 == 0
+    new_array.push(v)
+  end 
+  
+end
 
-
-
-
+p new_array
 
 
 
