@@ -48,7 +48,17 @@ loop do # main loop
   
   
   prompt("What operation would you like to perform? 1) add 2) subtract 3) multiply 4) divide")
+  
+  
+  operation = ''
+  loop do
   operation = gets.chomp
+    if %w(1 2 3 4).include?(operation)
+      break
+    else
+      prompt("That isn't one of your choices.  Please enter a valid operation.")
+    end
+  end
   
   
   result = case operation
