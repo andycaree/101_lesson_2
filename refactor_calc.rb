@@ -22,7 +22,6 @@ prompt("Hey there #{name}")
 
 loop do # main loop
 
-  
   num_1  = ''
   loop do
     prompt("What is your first number?")
@@ -33,7 +32,6 @@ loop do # main loop
       prompt("It looks like there was an error.  What is your first number?")
     end
   end
-  
   
   num_2 = ''
   loop do
@@ -46,9 +44,7 @@ loop do # main loop
     end
   end
   
-  
   prompt("What operation would you like to perform? 1) add 2) subtract 3) multiply 4) divide")
-  
   
   operation = ''
   loop do
@@ -59,7 +55,6 @@ loop do # main loop
       prompt("That isn't one of your choices.  Please enter a valid operation.")
     end
   end
-  
   
   result = case operation
             when "1"
@@ -72,9 +67,7 @@ loop do # main loop
               num_1.to_f / num_2.to_f
             end  
         
-  
   prompt("The result is #{result}")
-  
   prompt("Do you want to do another calculation?")
   answer = gets.chomp
   break unless answer.downcase.start_with?("y")
