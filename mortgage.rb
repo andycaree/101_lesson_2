@@ -29,7 +29,7 @@ end
 p = ''
 loop do
   puts "In US dollars, how much money are you borrowing?"
-  p = gets.chomp.gsub(/\D/, '').to_i
+  p = gets.chomp.gsub(/\D/, '').to_f
   if valid_number(p)
     break
   else
