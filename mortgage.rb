@@ -1,69 +1,45 @@
-# I need to pass in 3 things: loan amount, APR, loan duration
-# APR will need to be converted to months
-# loan duration (in years) will need to be converted to months
-# use this formula: m = p * (j / (1 - (1 +j) ** (-n)))
-# m = monthly payment
-# p = loan amount
-# j = monthly interest rate
-# n = loan duration in months
-
-def valid_number(num)
-  num > 0
+def negative_empty(num)
+  num.to_f < 0 || num.empty?
 end
 
-puts "First off, hello and welcome to my calculator."
-puts "I will help you figure out how much your monthly payments on your new loan will be."
-
-thing = ''
-loop do
-  puts "Are you getting a loan for a: 1) home or 2) car (Please enter the corrolating number)"
-  thing = gets.chomp
-  if thing != "1" && thing != "2"
-    puts "That is not a valid choice.  Please enter 1 or 2."
-  else
-    break
-  end
-end
-
-# amount of the loan
 p = ''
 loop do
-  puts "In US dollars, how much money are you borrowing?"
-  p = gets.chomp.gsub(/\D/, '').to_f
-  if valid_number(p)
-    break
+  puts "What is the loan amount?"
+  p = gets.chomp.gsub(/([$,])/, '')
+  if negative_empty(p)
+    puts "Please enter a number that is greater than zero."
   else
-    puts "Please enter a number greater than zero."
+    break
   end
 end
+loan_amount = p #format('%.2f', p)
 
-# annual percentage rate, then converted to months
 j = ''
 loop do
-  puts "What is the APR?"
-  apr = gets.chomp.gsub(/\D/, '').to_f
-  j = (apr / 12) / 100
-  if valid_number(j)
-    break
+  puts "Please choose an Annual Percentage Rate (APR)."
+  j = gets.chomp.gsub(/([%])/, '')
+  if negative_empty(j)
+    puts "Please enter a number that is zero or greater."
   else
-    puts "Please enter a number greater than zero."
+    break
   end
 end
+apr = (j.to_f / 12) / 100 #(format('%.2f', j) / 12
 
-# length of loan (years), converted to months
-puts "How many years is your loan?"
-length = gets.chomp.gsub(/\D/, '').to_i
-n = length * 12
+n = ''
+loop do
+  puts "In years, what is the duration of the loan?"
+  n = gets.chomp
+  if negative_empty(n)
+    puts "Please enter a number greater than zero."
+  else
+    break
+  end
+end
+time = n.to_f * 12 #format('%.2f', n)
 
-item = case thing
-       when "1"
-         "home"
-       when "2"
-         "car"
-       end
+monthly_payment = loan_amount.to_f * (apr.to_f / (1 - (1 + apr.to_f) ** (-time.to_f)))
 
-m = p * (j / (1 - (1 + j) **-n))
+puts "Your total monthly payment is $#{format('%.2f', monthly_payment)}."
 
-monthly_rate = m.round(2)
 
-puts "Based on everything you have told me, your monthly payments on your #{item} will be $#{monthly_rate}."
