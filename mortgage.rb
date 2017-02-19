@@ -40,3 +40,5 @@ loan_length = years.to_f * 12
 monthly_payment = loan_amount.to_f * (mpr.to_f / (1 - (1 + mpr.to_f)**-loan_length.to_f))
 
 puts "Your total monthly payment is $#{format('%.2f', monthly_payment)}."
+mmmmm
+kkkkk
